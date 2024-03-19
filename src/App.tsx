@@ -13,9 +13,16 @@ interface Comment {
 function App() {
   const [text, setText] = useState<string>("");
   const [comments, setComments] = useState<Comment[]>(data);
+  const [isReply, setIsReply] = useState<boolean>(false);
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    // setComments((prevComments: Comment[]) => [...prevComments]);
+    const obj = {
+      id: Math.floor(Math.random() * 100000) + 1,
+      author: "Miheer",
+      text: text,
+      replies: [],
+    };
+    setComments((prevComments: Comment[]) => [...prevComments, obj]);
     console.log(text);
     setText("");
   }
@@ -24,7 +31,15 @@ function App() {
       <div className="font-bold mt-4 w-2/6">
         <InputForm text={text} setText={setText} handleSubmit={handleSubmit} />
         {comments.map((comment) => (
-          <Comment key={comment.id} comment={comment} />
+          <Comment
+            key={comment.id}
+            comment={comment}
+            isReply={isReply}
+            setIsReply={setIsReply}
+            text={text}
+            setText={setText}
+            handleSubmit={handleSubmit}
+          />
         ))}
       </div>
     </div>
