@@ -1,35 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Comment from "./components/Comment";
+import { addComment, deleteComment } from "./utils";
+import { useComments } from "./context/CommentsProvider";
+// More comments can go here
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { comments, setComments } = useComments();
 
+  const handleAddComment = (commentId, text) => {
+    const newTree = addComment(comments, commentId, text);
+    setComments({ ...newTree });
+  };
+
+  const handleDeleteComment = (commentId) => {
+    const newTree = deleteComment(comments, commentId);
+    setComments({ ...newTree });
+  };
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="flex w-full justify-center flex-col font-sans">
+      <div className="mx-6 mt-4">
+        <h1 className="text-3xl font-semibold">Nested Comments System</h1>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div className="font-bold mt-4 ml-6">
+        <Comment
+          comment={comments}
+          handleAddComment={handleAddComment}
+          handleDeleteComment={handleDeleteComment}
+        />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
