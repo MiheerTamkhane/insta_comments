@@ -19,14 +19,14 @@ const InputForm = ({
         }}
       />
       <button
-        className="group mt-4 flex w-full items-center justify-center gap-2 rounded-md bg-rose-600 px-5 py-3 text-white transition focus:outline-none sm:mt-0 sm:w-auto"
+        className="w-full rounded-md bg-rose-600 px-5 py-3 text-white transition focus:outline-none sm:mt-0 sm:w-auto"
         onClick={addCommentHandler}
       >
         Add
       </button>
       {showInput && (
         <button
-          className="group mt-4 flex w-full items-center justify-center gap-2 rounded-md bg-rose-600 px-5 py-3 text-white transition focus:outline-none sm:mt-0 sm:w-auto"
+          className="w-full rounded-md bg-rose-600 px-5 py-3 text-white transition focus:outline-none sm:mt-0 sm:w-auto"
           onClick={cancelReplyHandler}
         >
           Cancel

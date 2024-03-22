@@ -26,7 +26,7 @@ const Comment = ({ comment, handleAddComment, handleDeleteComment }) => {
   };
 
   return (
-    <div className="my-4">
+    <div className="my-4 mx-4">
       {comment.id === 1 ? (
         <InputForm
           addCommentHandler={addCommentHandler}
